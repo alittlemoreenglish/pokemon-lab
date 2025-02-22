@@ -1,0 +1,483 @@
+:root {
+  /* Light Mode Colors */
+  --primary-color-light: #2563eb;
+  --secondary-color-light: #059669;
+  --background-color-light: #ffffff;
+  --card-background-light: #f8fafc;
+  --text-color-light-theme: #9bb0d4;
+  --text-color-light-accent: #ffffff;
+  --box-shadow-color-light: rgba(0, 0, 0, 0.1);
+  --border-color-light: #e2e8f0;
+
+  /* Dark Mode Colors */
+  --primary-color-dark: #64ffda;
+  --secondary-color-dark: #00bcd4;
+  --background-color-dark: #121212;
+  --card-background-dark: #1e1e1e;
+  --text-color-dark-theme: #e0e0e0;
+  --text-color-dark-accent: #121212;
+  --box-shadow-color-dark: rgba(255, 255, 255, 0.1);
+  --border-color-dark: #2c2c2c;
+
+  /* Default to Light Mode */
+  --primary-color: var(--primary-color-light);
+  --secondary-color: var(--secondary-color-light);
+  --background-color: var(--background-color-light);
+  --card-background: var(--card-background-light);
+  --text-color-dark: var(--text-color-light-theme);
+  --text-color-light: var(--text-color-light-accent);
+  --box-shadow-color: var(--box-shadow-color-light);
+  --border-color: var(--border-color-light);
+}
+
+/* Dark Mode Overrides */
+[data-theme="dark"] {
+  --primary-color: var(--primary-color-dark);
+  --secondary-color: var(--secondary-color-dark);
+  --background-color: var(--background-color-dark);
+  --card-background: var(--card-background-dark);
+  --text-color-dark: var(--text-color-dark-theme);
+  --text-color-light: var(--text-color-dark-accent);
+  --box-shadow-color: var(--box-shadow-color-dark);
+  --border-color: var(--border-color-dark);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--background-color);
+  background-image: url('https://alittlemoreenglish.weebly.com/uploads/2/6/6/3/26638990/untitled-design-10_orig.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: var(--text-color-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              fill 0.3s ease;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  transition: all 0.3s ease;
+}
+
+h1 {
+  text-align: center;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.05em;
+  animation: titlePulse 3s infinite alternate;
+  transition: all 0.3s ease;
+}
+
+@keyframes titlePulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+  background-color: var(--card-background);
+  color: var(--text-color-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px var(--box-shadow-color);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  background-color: var(--secondary-color);
+  color: var(--text-color-light);
+}
+
+.theme-icon {
+  width: 24px;
+  height: 24px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.moon, .sun {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.moon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.sun {
+  opacity: 0;
+  transform: scale(0.5);
+  position: absolute;
+}
+
+[data-theme="dark"] .moon {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+[data-theme="dark"] .sun {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.fusion-container {
+  background-color: var(--card-background);
+  border-radius: 15px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 16px var(--box-shadow-color);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, all 0.3s ease, background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease;
+}
+
+.fusion-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px var(--box-shadow-color);
+}
+
+.pokemon-select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 2.5rem;
+  transition: all 0.3s ease;
+}
+
+.pokemon {
+  text-align: center;
+}
+
+.pokemon select {
+  width: 220px;
+  padding: 0.75rem;
+  margin-bottom: 1.25rem;
+  border: 2px solid var(--secondary-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: var(--background-color);
+  color: var(--text-color-dark);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 5px;
+  padding-right: 2rem;
+  transition: all 0.3s ease;
+}
+
+.pokemon select option {
+  background-color: var(--card-background);
+  color: var(--text-color-dark);
+}
+
+[data-theme="dark"] select, 
+[data-theme="dark"] option {
+  background-color: var(--card-background-dark);
+  color: var(--text-color-dark-theme);
+}
+
+.pokemon-display {
+  width: 220px;
+  height: 220px;
+  border: 2px solid var(--secondary-color);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--card-background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease-in-out, border-color 0.3s ease-in-out, all 0.3s ease, background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease;
+}
+
+.pokemon-display.loading {
+  opacity: 0.7;
+  border-color: var(--primary-color);
+}
+
+.pokemon-display img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  filter: brightness(110%);
+}
+
+.placeholder-icon {
+  font-size: 4rem;
+  color: var(--secondary-color);
+  opacity: 0.7;
+}
+
+.fusion-symbol {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-shadow: 0 0 5px var(--primary-color);
+}
+
+.fuse-button {
+  display: block;
+  margin: 1.5rem auto 0;
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  background-color: var(--primary-color);
+  color: var(--text-color-dark);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  box-shadow: 0 4px 8px var(--box-shadow-color);
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s, all 0.3s ease;
+}
+
+.fuse-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px var(--box-shadow-color);
+  background-color: var(--secondary-color);
+  color: var(--text-color-light);
+}
+
+.fuse-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px var(--box-shadow-color);
+}
+
+.fuse-button.disabled {
+  background-color: var(--border-color);
+  color: var(--text-color-dark);
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
+.fuse-button.disabled:hover {
+  transform: none;
+  box-shadow: none;
+  background-color: var(--border-color);
+}
+
+.result-container {
+  margin-top: 3rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #333;
+  border-top: 6px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+}
+
+.loading p {
+  font-size: 1.1rem;
+  color: var(--text-color-dark);
+  opacity: 0.8;
+}
+
+.fusion-result {
+  padding: 2.5rem;
+  background-color: var(--card-background);
+  border-radius: 15px;
+  box-shadow: 0 6px 12px var(--box-shadow-color);
+  transition: all 0.3s ease, background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease;
+}
+
+.fusion-image {
+  width: 320px;
+  height: 320px;
+  margin: 0 auto 1.5rem;
+  border: 3px solid var(--secondary-color);
+  border-radius: 15px;
+  overflow: hidden;
+  background: #2a2a2a;
+}
+
+[data-theme="dark"] .fusion-image {
+  border-color: var(--secondary-color-dark);
+}
+
+.fusion-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(120%);
+}
+
+.fusion-stats {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background: #2a2a2a;
+  border-radius: 12px;
+  text-align: left;
+  transition: all 0.3s ease, background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease;
+}
+
+[data-theme="dark"] .fusion-stats {
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark-theme);
+}
+
+.fusion-stats h3 {
+  color: var(--secondary-color);
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.3rem;
+}
+
+[data-theme="dark"] .fusion-stats h3 {
+  color: var(--primary-color-dark);
+}
+
+.fusion-stats p, .fusion-stats ul, .fusion-stats li {
+  color: var(--text-color-dark);
+  font-size: 1rem;
+}
+
+.fusion-stats ul {
+  padding-left: 1.5rem;
+}
+
+.fusion-stats li {
+  margin-bottom: 0.5rem;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.pokemon-collision {
+  position: relative;
+}
+
+.pokemon-collision .pokemon-display {
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.pokemon-collision .pokemon1 .pokemon-display {
+  transform: translateX(50%) rotate(-15deg);
+}
+
+.pokemon-collision .pokemon2 .pokemon-display {
+  transform: translateX(-50%) rotate(15deg);
+}
+
+.pokemon-collision .fusion-symbol {
+  opacity: 0;
+}
+
+.fusion-explosion {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, 
+    rgba(255, 255, 255, 0.8) 0%, 
+    rgba(255, 215, 0, 0.6) 50%, 
+    rgba(255, 0, 0, 0.3) 100%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  animation: fusion-explosion 0.6s ease-out;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes fusion-explosion {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.page-footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--card-background);
+  color: var(--text-color-dark);
+  font-size: 0.9rem;
+  opacity: 0.7;
+  transition: all 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 -2px 10px var(--box-shadow-color);
+}
+
+[data-theme="dark"] .page-footer {
+  background-color: var(--card-background-dark);
+  color: var(--text-color-dark-theme);
+}
